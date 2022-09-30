@@ -1,7 +1,5 @@
 <div class="card">
-	<div class="card-header">
-		{{ pageTitle }}
-	</div>
+	<div class="card-header" [innerText]='pageTitle'></div>
 	<div class="card-body">
 		<div class="row">
 			<div class="col-md-2">Filter by:</div>
@@ -34,7 +32,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr *ngFor="let product of products">
+					<tr *ngFor="let product of filterProducts">
 						<td>
 							<img *ngIf='showImage'
 								[src]='product.imageUrl'
@@ -44,7 +42,7 @@
 								[style.margin.px]='imageMargin'>
 						</td>
 						<td>{{ product.productName }}</td>
-						<td>{{ product.productCode | uppercase }}</td>
+						<td>{{ product.productCode | uppercase | convertToSpaces:'-' }}</td>
 						<td>{{ product.releaseDate }}</td>
 						<td>{{ product.price | currency:'RUB':'symbol':'1.2-2' }}</td>
 						<td>{{ product.starRating }}</td>
